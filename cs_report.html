@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DigAÍ · CS Report · Abril 2026</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #1e2130; --border: #2e3350;
+    --txt: #e8eaf0; --sub: #8892b0; --acc: #4f8ef7;
+    --green: #1a7f4b; --red: #e53935; --orange: #ff9800;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--txt); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; padding: 2rem; }
+  h1 { font-size: 1.8rem; color: var(--acc); margin-bottom: .3rem; }
+  h2 { font-size: 1.15rem; color: var(--acc); margin: 2rem 0 .8rem; border-bottom: 1px solid var(--border); padding-bottom: .4rem; }
+  h3 { font-size: 1rem; color: var(--sub); margin-bottom: .5rem; }
+  .subtitle { color: var(--sub); font-size: .9rem; margin-bottom: 2rem; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; }
+  .kpi .value { font-size: 1.6rem; font-weight: 700; color: var(--txt); }
+  .kpi .label { font-size: .78rem; color: var(--sub); margin-top: .2rem; text-transform: uppercase; letter-spacing: .05em; }
+  .kpi.red .value { color: var(--red); }
+  .kpi.green .value { color: #34c77b; }
+  .kpi.orange .value { color: var(--orange); }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .chart-full { margin-bottom: 2rem; }
+  .chart-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+  .chart-box img { width: 100%; border-radius: 6px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; }
+  th { background: #252840; color: var(--sub); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; padding: .7rem 1rem; text-align: left; }
+  td { padding: .6rem 1rem; border-top: 1px solid var(--border); color: var(--txt); font-size: .88rem; }
+  tr:hover td { background: #252840; }
+  .badge { padding: .2rem .6rem; border-radius: 20px; font-size: .75rem; font-weight: 600; white-space: nowrap; }
+  .badge-green  { background: #0d3320; color: #34c77b; }
+  .badge-teal   { background: #0d2e22; color: #4db88c; }
+  .badge-blue   { background: #0d1f3c; color: #64b5f6; }
+  .badge-orange { background: #3d2200; color: #ff9800; }
+  .badge-red    { background: #3d0a0a; color: #ef5350; }
+  .badge-gray   { background: #1e1e2e; color: #9e9e9e; }
+  .text-red { color: var(--red); }
+  .section-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .callout { background: var(--card); border-left: 4px solid; border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; margin-bottom: 1rem; }
+  .callout.positive { border-color: #34c77b; }
+  .callout.negative { border-color: var(--red); }
+  .callout.neutral  { border-color: var(--acc); }
+  .callout .icon { font-size: 1.2rem; }
+  .callout p { margin-top: .3rem; font-size: .88rem; color: var(--sub); line-height: 1.5; }
+  footer { margin-top: 3rem; color: var(--sub); font-size: .8rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>DigAÍ · Customer Success Report</h1>
+<p class="subtitle">Preparado para reunião executiva · 01 de Abril de 2026 · Base: aba "Controle" da planilha CS</p>
+
+<!-- KPIs -->
+<div class="kpi-grid">
+  <div class="kpi"><div class="value">83</div><div class="label">Clientes na carteira</div></div>
+  <div class="kpi"><div class="value">R$ 5.498.925</div><div class="label">ARR Total</div></div>
+  <div class="kpi green"><div class="value">R$ 2.178.436</div><div class="label">ARR Saudável (Usando + Adotou)</div></div>
+  <div class="kpi orange"><div class="value">R$ 985.784</div><div class="label">ARR em Risco (abaixo / não usa)</div></div>
+  <div class="kpi red"><div class="value">R$ 438.700</div><div class="label">ARR em Churn (8.0%)</div></div>
+  <div class="kpi"><div class="value">625,486</div><div class="label">Entrevistas realizadas (total)</div></div>
+  <div class="kpi"><div class="value">1,260</div><div class="label">Usuários ativos</div></div>
+  <div class="kpi"><div class="value">30</div><div class="label">Clientes em onboarding</div></div>
+</div>
+
+<!-- CHARTS ROW 1 -->
+<div class="chart-grid">
+  <div class="chart-box"><img src="chart1_overview.png" alt="overview"></div>
+  <div class="chart-box"><img src="chart2_arr_by_status.png" alt="arr por status"></div>
+</div>
+
+<!-- DESTAQUES POSITIVOS -->
+<h2>✅ Destaques Positivos</h2>
+<div class="callout positive">
+  <span class="icon">🏆</span> <strong>CI&T e Cia de Talentos são âncoras de escala</strong>
+  <p>CI&T realizou <strong>149.057 entrevistas</strong> (ARR R$ 232k) e Cia de Talentos acumula <strong>120.519</strong> (ARR R$ 195k). Juntos representam 43% de todo o volume de entrevistas da base.</p>
+</div>
+<div class="callout positive">
+  <span class="icon">📈</span> <strong>Pipeline de novos clientes acelerado — 30 em onboarding</strong>
+  <p>30 contratos novos em fase de onboarding, representando <strong>R$ 1,9M de ARR</strong> ainda a ser consolidado. Inclui names relevantes: ATOS (R$ 227k), Raízen (R$ 179k), Hospital Care (R$ 89k).</p>
+</div>
+<div class="callout positive">
+  <span class="icon">💚</span> <strong>5 clientes em estágio "Adotou" — produto integrado ao processo</strong>
+  <p>CI&T, Cia de Talentos, Stone, Afya e Nuvem Shop atingiram adoção plena. Stone alcançou <strong>19.404 entrevistas</strong> e Afya <strong>40.915</strong>. Esses são os melhores casos de prova de valor.</p>
+</div>
+<div class="callout positive">
+  <span class="icon">🔁</span> <strong>DPSP e Beep Saúde: renovações com alto engajamento</strong>
+  <p>DPSP acumula <strong>31.217 entrevistas</strong> (ARR R$ 55k) e Beep Saúde <strong>10.138</strong> (ARR R$ 72k). Ambos representam renovações com uso comprovado.</p>
+</div>
+<div class="callout positive">
+  <span class="icon">🌟</span> <strong>Grupo Salta e Localiza: base ampla de usuários</strong>
+  <p>Grupo Salta tem 36 usuários ativos e Localiza 86 — sinais de expansão horizontal dentro dos clientes. Localiza com 13.685 entrevistas a um ARR de apenas R$ 6k indica potencial de upsell significativo.</p>
+</div>
+
+<!-- DESTAQUES NEGATIVOS -->
+<h2>🚨 Destaques Negativos</h2>
+<div class="callout negative">
+  <span class="icon">💸</span> <strong>Hapvida: R$ 600k ARR em risco crítico</strong>
+  <p>Maior contrato da base está categorizado como "Abaixo do esperado" com 936 entrevistas realizadas e múltiplos usuários. Necessita plano de ação imediato com stakeholder de nível executivo.</p>
+</div>
+<div class="callout negative">
+  <span class="icon">🔴</span> <strong>13 clientes em Churn — R$ 438k de ARR perdido</strong>
+  <p>Motivos principais: <em>Baixo valor percebido</em> (4 casos), <em>Budget</em> (2), <em>Produto não resolveu o problema</em> (1). OakBerry (R$ 99k) e Track&Field (R$ 58k) são as maiores perdas.</p>
+</div>
+<div class="callout negative">
+  <span class="icon">⚠️</span> <strong>8 clientes "Abaixo do esperado" — R$ 929k em risco latente</strong>
+  <p>Prysmian (R$ 71k), Monashees (R$ 64k), Db1 (R$ 58k), Hapvida (R$ 600k). Esse grupo soma mais ARR em risco que o próprio churn declarado.</p>
+</div>
+<div class="callout negative">
+  <span class="icon">🔌</span> <strong>Integração com Gupy/Inhire como gargalo recorrente</strong>
+  <p>SRM churnou citando produto — dificuldade com banco de talentos. Sandvik (R$ 89k) tem processo "Não" mesmo com Gupy. Alice (R$ 59k) ainda aguarda resolução de tag estruturada no Inhire. Integração com ATSs é ponto crítico de retenção.</p>
+</div>
+<div class="callout negative">
+  <span class="icon">🚫</span> <strong>Polishop: 0 entrevistas com ARR de R$ 75k — sem atividade</strong>
+  <p>Categorizado como Churning sem nenhuma entrevista realizada. Indica possível falha de onboarding ou desengajamento total do time de R&S.</p>
+</div>
+
+<!-- CHARTS ROW 2 -->
+<div class="chart-grid">
+  <div class="chart-box"><img src="chart4_churn_reasons.png" alt="churn reasons"></div>
+  <div class="chart-box"><img src="chart8_risk.png" alt="risk"></div>
+</div>
+
+<!-- ANÁLISE ESTATÍSTICA -->
+<h2>📊 Análise Estatística</h2>
+
+<div class="section-row">
+  <div>
+    <h3>Distribuição por Status</h3>
+    <table>
+      <thead><tr><th>Status</th><th>Clientes</th><th>ARR</th><th>% ARR</th></tr></thead>
+      <tbody>
+<tr>
+  <td><span class="badge badge-green">Adotou</span></td>
+  <td>5</td>
+  <td>R$ 635.280</td>
+  <td>11.6%</td>
+</tr>
+<tr>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>25</td>
+  <td>R$ 1.543.156</td>
+  <td>28.1%</td>
+</tr>
+<tr>
+  <td><span class="badge badge-blue">Onboarding/Recente</span></td>
+  <td>30</td>
+  <td>R$ 1.896.005</td>
+  <td>34.5%</td>
+</tr>
+<tr>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>8</td>
+  <td>R$ 928.904</td>
+  <td>16.9%</td>
+</tr>
+<tr>
+  <td><span class="badge badge-red">Churning</span></td>
+  <td>13</td>
+  <td>R$ 438.700</td>
+  <td>8.0%</td>
+</tr>
+<tr>
+  <td><span class="badge badge-gray">Não usando</span></td>
+  <td>2</td>
+  <td>R$ 56.880</td>
+  <td>1.0%</td>
+</tr></tbody>
+    </table>
+  </div>
+  <div>
+    <h3>Concentração de ARR</h3>
+    <div class="callout neutral" style="margin-top:0">
+      <p>
+        <strong>Top 5 clientes por ARR</strong> concentram 28.3% do ARR total.<br><br>
+        <strong>ATOS</strong> (R$ 227k) · <strong>CI&T</strong> (R$ 233k) · <strong>Hapvida</strong> (R$ 600k) · <strong>Carrefour</strong> (R$ 300k) · <strong>Cia de Talentos</strong> (R$ 195k)<br><br>
+        Dependência excessiva: Hapvida sozinha representa <strong>10.9%</strong> do ARR — risco de concentração crítico.
+      </p>
+    </div>
+    <div class="callout neutral">
+      <p>
+        <strong>Ticket Médio por status:</strong><br>
+        Adotou: R$ 127.056 &nbsp;|&nbsp;
+        Usando: R$ 61.726<br>
+        Churning: R$ 33.746 &nbsp;|&nbsp;
+        Geral: R$ 66.252
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="chart-full chart-box"><img src="chart5_value_map.png" alt="value map"></div>
+
+<h3>Top 10 por Volume de Entrevistas</h3>
+<table>
+  <thead><tr><th>#</th><th>Cliente</th><th>Status</th><th>Entrevistas</th><th>ARR</th></tr></thead>
+  <tbody>
+<tr>
+  <td>1</td>
+  <td>CI&T</td>
+  <td><span class="badge badge-green">Adotou</span></td>
+  <td>149,057</td>
+  <td>R$ 232.680</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Cia de Talentos</td>
+  <td><span class="badge badge-green">Adotou</span></td>
+  <td>120,519</td>
+  <td>R$ 195.000</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td>Atento</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>92,520</td>
+  <td>R$ 45.600</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td>Afya</td>
+  <td><span class="badge badge-green">Adotou</span></td>
+  <td>40,915</td>
+  <td>R$ 62.400</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td>DPSP_RENOVAÇÃO</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>31,217</td>
+  <td>R$ 55.000</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td>Ifood</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>23,172</td>
+  <td>R$ 6.900</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td>Stone</td>
+  <td><span class="badge badge-green">Adotou</span></td>
+  <td>19,404</td>
+  <td>R$ 118.800</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td>Sabesp Anual</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>14,349</td>
+  <td>R$ 112.800</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td>Localiza</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>13,685</td>
+  <td>R$ 6.000</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td>GPA</td>
+  <td><span class="badge badge-teal">Usando</span></td>
+  <td>13,152</td>
+  <td>R$ 17.700</td>
+</tr></tbody>
+</table>
+
+<div class="chart-grid">
+  <div class="chart-box"><img src="chart3_top_interviews.png" alt="top interviews"></div>
+  <div class="chart-box"><img src="chart6_ats.png" alt="ats distribution"></div>
+</div>
+
+<h3>Clientes em Risco — Detalhe</h3>
+<table>
+  <thead><tr><th>Cliente</th><th>Status</th><th>ARR</th><th>Entrevistas</th><th>ATS</th></tr></thead>
+  <tbody>
+<tr>
+  <td>Hapvida</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 600.000</td>
+  <td>936</td>
+  <td>Gupy, Pandapé / Infojobs</td>
+</tr>
+<tr>
+  <td>Prysmian</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 70.800</td>
+  <td>495</td>
+  <td>Workday</td>
+</tr>
+<tr>
+  <td>Monashees</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 63.700</td>
+  <td>69</td>
+  <td>Inhire</td>
+</tr>
+<tr>
+  <td>Db1</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 57.504</td>
+  <td>16</td>
+  <td>Inhire</td>
+</tr>
+<tr>
+  <td>Nunchi</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 42.600</td>
+  <td>121</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>Heavenly</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 42.000</td>
+  <td>390</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>Liora energia</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 34.800</td>
+  <td>150</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>CNA</td>
+  <td><span class="badge badge-gray">Não usando</span></td>
+  <td>R$ 33.000</td>
+  <td>551</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td>SUNO UNITED CREATORS</td>
+  <td><span class="badge badge-gray">Não usando</span></td>
+  <td>R$ 23.880</td>
+  <td>0</td>
+  <td>Solides</td>
+</tr>
+<tr>
+  <td>Yellowbird</td>
+  <td><span class="badge badge-orange">Abaixo do esperado</span></td>
+  <td>R$ 17.500</td>
+  <td>304</td>
+  <td>—</td>
+</tr></tbody>
+</table>
+
+<h3>Clientes em Churn — Detalhe</h3>
+<table>
+  <thead><tr><th>Cliente</th><th>Motivo do Churn</th><th>ARR Perdido</th></tr></thead>
+  <tbody>
+<tr>
+  <td>OakBerry</td>
+  <td class="text-red">Baixo valor percebido</td>
+  <td>R$ 98.800</td>
+</tr>
+<tr>
+  <td>Polishop</td>
+  <td class="text-red">—</td>
+  <td>R$ 75.000</td>
+</tr>
+<tr>
+  <td>Track&Field</td>
+  <td class="text-red">Concorrência</td>
+  <td>R$ 57.820</td>
+</tr>
+<tr>
+  <td>SRM</td>
+  <td class="text-red">Produto não resolveu o problema</td>
+  <td>R$ 50.400</td>
+</tr>
+<tr>
+  <td>Pionnier Atendimento Domiciliar</td>
+  <td class="text-red">Baixo valor percebido</td>
+  <td>R$ 40.800</td>
+</tr>
+<tr>
+  <td>Empiricus</td>
+  <td class="text-red">Mudança de estratégia</td>
+  <td>R$ 40.800</td>
+</tr>
+<tr>
+  <td>Grupo Iguatemi</td>
+  <td class="text-red">—</td>
+  <td>R$ 20.700</td>
+</tr>
+<tr>
+  <td>TRINCA</td>
+  <td class="text-red">Preço x Valor</td>
+  <td>R$ 12.600</td>
+</tr>
+<tr>
+  <td>Zenvia</td>
+  <td class="text-red">Budget</td>
+  <td>R$ 11.880</td>
+</tr>
+<tr>
+  <td>Zerezes</td>
+  <td class="text-red">Budget</td>
+  <td>R$ 10.800</td>
+</tr>
+<tr>
+  <td>Loggi</td>
+  <td class="text-red">Baixo valor percebido</td>
+  <td>R$ 8.700</td>
+</tr>
+<tr>
+  <td>RD Station</td>
+  <td class="text-red">Baixo valor percebido</td>
+  <td>R$ 5.900</td>
+</tr>
+<tr>
+  <td>Rent Cars</td>
+  <td class="text-red">Baixo uso / Engajamento</td>
+  <td>R$ 4.500</td>
+</tr></tbody>
+</table>
+
+<div class="chart-full chart-box"><img src="chart7_cs_workload.png" alt="cs workload"></div>
+
+<!-- SUGESTÕES DE MÉTRICAS CS -->
+<h2>💡 Métricas de Customer Success Sugeridas</h2>
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+  <div class="callout neutral">
+    <strong>Time to First Value (TTFV)</strong>
+    <p>Dias entre onboarding e primeira entrevista concluída. Permite identificar gargalos de ativação e correlacionar com churn futuro.</p>
+  </div>
+  <div class="callout neutral">
+    <strong>Health Score Composto</strong>
+    <p>Score 0–100 combinando: entrevistas/mês, % usuários ativos, frequência de login, uso de features avançadas (hunting, agendamento). Alerta automático abaixo de 40.</p>
+  </div>
+  <div class="callout neutral">
+    <strong>NPS / CSAT por fase</strong>
+    <p>Pesquisa estruturada pós-onboarding (30 dias), pós-primeiro resultado e pré-renovação. Permite agir antes do churn declarado.</p>
+  </div>
+  <div class="callout neutral">
+    <strong>Interviews per User per Month (IPUM)</strong>
+    <p>Entrevistas ÷ usuários ativos ÷ meses de contrato. Normaliza volume para comparar clientes de tamanhos diferentes. Meta sugerida: ≥ 50 IPUM para "Usando".</p>
+  </div>
+  <div class="callout neutral">
+    <strong>Feature Adoption Rate</strong>
+    <p>% de clientes usando ≥ 2 features (ex: triagem + hunting + agendamento). Clientes com 1 feature têm risco de churn 3× maior (padrão de mercado SaaS).</p>
+  </div>
+  <div class="callout neutral">
+    <strong>Churn Prediction Lead Time</strong>
+    <p>Quantos dias antes do churn declarado o cliente entrou em "Abaixo do esperado". Permite medir efetividade do CS em identificar e reverter risco a tempo.</p>
+  </div>
+  <div class="callout neutral">
+    <strong>ARR de Expansão vs Contração</strong>
+    <p>MoM: upsells, adição de usuários, novos módulos (expansão) vs downgrades e churns (contração). Net Revenue Retention (NRR) — meta: &gt; 100%.</p>
+  </div>
+  <div class="callout neutral">
+    <strong>Onboarding Completion Rate</strong>
+    <p>% de clientes que completaram todas as etapas do onboarding (kickoff + treinamento + 1ª vaga ativa) dentro do prazo. Hoje 30 clientes em onboarding — sem visibilidade de conversão.</p>
+  </div>
+</div>
+
+<footer>
+  Relatório gerado automaticamente a partir da aba "Controle" · DigAÍ CS Dashboard · 01 de Abril de 2026<br>
+  Dados: Google Sheets · Análise: Claude (Anthropic) · Charts: Python / Matplotlib
+</footer>
+</body>
+</html>
